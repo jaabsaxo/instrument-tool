@@ -1,0 +1,54 @@
+.App {
+  background-color: #ffffff;
+}
+
+.App-header {
+  background-color: #ff0000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #00ff00;
+}
+
+.UL {
+  float: left;
+  width: 80%;
+}
+
+.UR {
+  float: left;
+  width: 20%;
+  background-color: white;
+}
+
+.LL {
+  float: left;
+  width: 80%;
+}
+
+.LR {
+  float: left;
+  width: 20%;
+  background-color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type=text] {
+  width: 60%;
+  line-height: 10%;
+}
+
+.same-line {
+  display: flex;
+  align-items: center;
+  text-indent: 10px;
+}
