@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -24,10 +24,12 @@ const useStyles = makeStyles({
 });
 
 export default function InstrumentCard(instrumentInfo) {
+  console.log("instrumentInfo", instrumentInfo);
   const classes = useStyles();
   let uic = instrumentInfo.instrumentInfo.Identifier;
   let AssetType = instrumentInfo.instrumentInfo.AssetType;
   let symbol = instrumentInfo.instrumentInfo.Symbol;
+  
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -44,6 +46,10 @@ export default function InstrumentCard(instrumentInfo) {
         /
         <Button style={{textTransform: 'none'}} onClick={() => {navigator.clipboard.writeText(uic)}}>
           <Typography variant="h5" component="h2">{uic}</Typography>
+        </Button>
+        /
+        <Button style={{textTransform: 'none'}} onClick={() => {instrumentInfo.fetchInstrumentDetails(uic)}}>
+          <Typography variant="h5" component="h2">Details</Typography>
         </Button>
       </CardContent>
     </Card>

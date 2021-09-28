@@ -26,7 +26,7 @@ class ConfigPage extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {clientKey: null, userId: null}
+    this.state = {clientKey: null, clientId: null, accountKey: null}
   }
 
   componentDidMount(){
@@ -44,7 +44,7 @@ class ConfigPage extends Component {
   }
 
   validateToken() {
-    const urlUsersMe = "https://gateway.saxobank.com/sim/openapi/port/v1/users/me";
+    const urlUsersMe = "https://gateway.saxobank.com/sim/openapi/port/v1/accounts/me/";
     const tokenDict = {
       'method': 'GET',
       'headers': { 'Authorization': 'Bearer ' + this.props.token }
@@ -53,7 +53,8 @@ class ConfigPage extends Component {
       if(response.status === 200) {
         this.props.setAccessOk();
         response.json().then(jsonData => {
-          this.setState({clientKey: jsonData.ClientKey, userId: jsonData.UserId})
+          console.log("jsonData:", jsonData);
+          this.setState({clientKey: jsonData.Data[0].ClientKey, clientId: jsonData.Data[0].ClientId, accountKey: jsonData.Data[0].AccountKey})
         });
       } else {
         this.props.setAccessInvalid();
@@ -90,8 +91,12 @@ class ConfigPage extends Component {
         <p>{this.state.clientKey} </p>
       </div>
       <div className="same-line">
-        <p>UserId  </p>
-        <p>{this.state.userId} </p>
+        <p>ClientId  </p>
+        <p>{this.state.clientId} </p>
+      </div>
+      <div className="same-line">
+        <p>AccountKey  </p>
+        <p>{this.state.accountKey} </p>
       </div>
       <hr/>
       </div>

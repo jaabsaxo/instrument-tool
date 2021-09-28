@@ -13,12 +13,11 @@ class InstrumentTable extends Component {
   }
 
   renderTableData() {
-    console.log("Props in InstrumentTable", this.props);
     if (this.props.instrumentData.length > 0){
       return this.props.instrumentData.map((instrumentInfo, index) => {
         return (
            <tr key="index">
-              <td><InstrumentCard instrumentInfo={instrumentInfo}/></td>
+              <td><InstrumentCard instrumentInfo={instrumentInfo} fetchInstrumentDetails = {this.props.fetchInstrumentDetails.bind(this)}/></td>
            </tr>
         )
      })
