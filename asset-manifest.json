@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/instrument-tool/static/css/main.ca403c9c.chunk.css",
+    "main.js": "/instrument-tool/static/js/main.d5cbfa00.chunk.js",
+    "main.js.map": "/instrument-tool/static/js/main.d5cbfa00.chunk.js.map",
+    "runtime-main.js": "/instrument-tool/static/js/runtime-main.d1edabc7.js",
+    "runtime-main.js.map": "/instrument-tool/static/js/runtime-main.d1edabc7.js.map",
+    "static/css/2.fbce6968.chunk.css": "/instrument-tool/static/css/2.fbce6968.chunk.css",
+    "static/js/2.7551bcda.chunk.js": "/instrument-tool/static/js/2.7551bcda.chunk.js",
+    "static/js/2.7551bcda.chunk.js.map": "/instrument-tool/static/js/2.7551bcda.chunk.js.map",
+    "index.html": "/instrument-tool/index.html",
+    "static/css/2.fbce6968.chunk.css.map": "/instrument-tool/static/css/2.fbce6968.chunk.css.map",
+    "static/css/main.ca403c9c.chunk.css.map": "/instrument-tool/static/css/main.ca403c9c.chunk.css.map",
+    "static/js/2.7551bcda.chunk.js.LICENSE.txt": "/instrument-tool/static/js/2.7551bcda.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d1edabc7.js",
+    "static/css/2.fbce6968.chunk.css",
+    "static/js/2.7551bcda.chunk.js",
+    "static/css/main.ca403c9c.chunk.css",
+    "static/js/main.d5cbfa00.chunk.js"
+  ]
+}
