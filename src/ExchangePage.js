@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Table from "./Table";
 import InstrumentTable from "./InstrumentTable";
 import LogInStatusBar from "./LogInStatusBar";
+import InstrumentDetailsCard from "./InstrumentDetailsCard"
 
 
 class ExchangeCard extends Component{
@@ -43,7 +44,7 @@ class ExchangeCard extends Component{
         <div>
           <button onClick={this.setExpandFalse}>Hide Instruments</button>
           <tr key="ExchangeId">
-            <InstrumentTable instrumentData={this.state.data}/>
+            <InstrumentTable instrumentData={this.state.data} fetchInstrumentDetails={this.props.fetchInstrumentDetails}/>
           </tr>
         </div>
      )
@@ -73,7 +74,7 @@ class ExchangeTable extends Component{
       return this.props.exchangeData.Data.map((exchangeInfo, index) => {
         return (
            <tr key="Exchanges">
-              <td><ExchangeCard exchangeInfo={exchangeInfo} token={this.props.token}/></td>
+              <td><ExchangeCard exchangeInfo={exchangeInfo} token={this.props.token} fetchInstrumentDetails={this.props.fetchInstrumentDetails}/></td>
            </tr>
         )
      })
@@ -99,9 +100,25 @@ render() {
 class ExchangePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {exchangeData: null};
+    this.state = {exchangeData: null, uicDetails: ""};
     this.loadNewExchangeData = this.loadNewExchangeData.bind(this);
+    this.fetchInstrumentDetails = this.fetchInstrumentDetails.bind(this);
   }
+
+  fetchInstrumentDetails(uic) {
+    let url = "https://gateway.saxobank.com/sim/openapi/ref/v1/instruments/details/?Uics="+ uic;
+    console.log("Creating instrument table with from:", url);
+    console.log("With Token", this.props.token);
+    const  tokenDict = {
+      'method': 'GET',
+      'headers': { 'Authorization': 'Bearer ' + this.props.token }
+    };
+    fetch(url, tokenDict).then(response => response.json()).then(jsonData => {
+      console.log("Fetch instrument data:", jsonData);
+      this.setState({uicDetails: jsonData.Data});
+    })
+  }
+
 
   loadNewExchangeData() {
     clearExchangeDataInLocalStorage();
@@ -137,8 +154,15 @@ class ExchangePage extends Component {
       <div>
         <LogInStatusBar accessOk = {this.props.accessOk}/>
         <br/>
-        <button onClick={this.loadNewExchangeData}>Reload Table</button>
-        <ExchangeTable exchangeData={this.state.exchangeData} token={this.props.token}/>
+        <table style={{width: '70%'}}>
+        <td>
+          <button onClick={this.loadNewExchangeData}>Reload Table</button>
+          <ExchangeTable exchangeData={this.state.exchangeData} token={this.props.token} fetchInstrumentDetails={this.fetchInstrumentDetails} />
+        </td>
+        <td>
+          <InstrumentDetailsCard uicDetails = {this.state.uicDetails} token = {this.props.token}/>
+        </td>
+        </table>
       </div>
     );
   }
