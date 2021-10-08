@@ -52,10 +52,9 @@ class ExchangeCard extends Component{
       return (
         <div>
         <tr key="ExchangeId">
-           <td>{this.props.exchangeInfo.ExchangeId}</td>
            <td>{this.props.exchangeInfo.Mic}</td>
-           <td>{this.props.exchangeInfo.Name}</td>
-           <td><button onClick={this.setExpandTrue}>Get Uics</button></td>
+           <td>----- ----- {this.props.exchangeInfo.Name}</td>
+           <td>----- ----- <button onClick={this.setExpandTrue}>Get Uics</button></td>
         </tr>
         </div>
      )
